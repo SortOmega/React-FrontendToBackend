@@ -1,0 +1,11 @@
+@use 'pagesCommon';
+.UserListContainer {
+  @include pagesCommon.PageContainer();
+}
+
+.UserData {
+  padding: 5pt;
+  border: 1pt solid #007e6e;
+  border-radius: 10pt;
+  height: min-content;
+}

@@ -1,0 +1,21 @@
+@use 'pagesCommon';
+
+.HomeContainer {
+  @include pagesCommon.PageContainer();
+}
+
+:global(.LightMode) {
+  .HomeContainer {
+    > button {
+      background: #4c3;
+    }
+  }
+}
+
+:global(.DarkMode) {
+  .HomeContainer {
+    > button {
+      background: #0f7f00;
+    }
+  }
+}

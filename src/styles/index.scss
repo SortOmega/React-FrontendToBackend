@@ -1,0 +1,103 @@
+@use 'fonts-icons';
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+}
+
+@mixin InitRoot() {
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+}
+@mixin FlexHeight() {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+body {
+  @include InitRoot;
+  > #root {
+    @include InitRoot;
+  }
+}
+
+$HeaderHeight: 4rem;
+header {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: #{$HeaderHeight};
+  color: #ffffff;
+  justify-content: space-between;
+
+  &.LightMode {
+    background: #212121;
+  }
+  &.DarkMode {
+    background: #101010;
+  }
+
+  > h1 {
+    padding: 0 6pt;
+  }
+
+  > ul {
+    list-style: none;
+
+    > li {
+      @include FlexHeight();
+
+      > .NavPage {
+        color: #ffeded;
+        transition: color 0.3s;
+        &:hover {
+          color: #ff8888;
+        }
+        &--active {
+          color: greenyellow;
+        }
+      }
+
+      > .NavPage,
+      > .NavPage--active {
+        @include FlexHeight();
+        padding: 0 15pt;
+        background: inherit;
+        text-decoration: none;
+        &:hover {
+          background: #333;
+        }
+      }
+    }
+  }
+
+  > h1,
+  > ul {
+    @include FlexHeight();
+  }
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  padding: 0 5pt;
+  padding-top: #{$HeaderHeight};
+  transition: background 0.5s;
+  &.LightMode {
+    background: #ffeded;
+  }
+  &.DarkMode {
+    background: #222222;
+    color: #ffffff;
+  }
+}

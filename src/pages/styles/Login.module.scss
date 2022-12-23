@@ -1,0 +1,168 @@
+.LoginForm {
+  display: grid;
+  align-self: center;
+  width: 400px;
+  grid-template-rows: 70pt 1fr 80pt;
+  border-radius: 15pt;
+  height: min-content;
+  padding: 20pt;
+  transition: box-shadow 0.5s;
+  animation: BgAnim 50s infinite;
+
+  &__Title {
+    margin: 10pt 0;
+    > h3 {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-size: 26pt;
+    }
+  }
+
+  &__Data {
+    display: flex;
+    flex-direction: column;
+    label {
+      margin: 5pt 0;
+    }
+    input {
+      margin-bottom: 8pt;
+      outline: none;
+      padding: 5pt;
+      border: none;
+      border-radius: 5pt;
+      border-bottom: 3pt solid #00000000;
+      transition: border 0.4s;
+    }
+  }
+
+  &__Submit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    a {
+      font-size: 10pt;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 10pt;
+      background: #00000000;
+      border: 2pt outset #00000000;
+      border-radius: 8pt;
+      padding: 5pt;
+      font-size: 14pt;
+      font-weight: bolder;
+      cursor: pointer;
+    }
+  }
+}
+
+:global(.LightMode) {
+  .LoginForm {
+    background: linear-gradient(30deg, #9bffde, #d5fffe, #fff5d0, #e0ffa1);
+    background-size: 500%;
+    box-shadow: 0 0 5pt #9bffde;
+
+    &:hover {
+      box-shadow: 0 0 15pt #9bffde;
+    }
+
+    input {
+      box-shadow: none;
+      -webkit-box-shadow: inset 0 0 0 30px #ffffff;
+
+      &::placeholder {
+        color: #9b9b9b;
+      }
+      &:invalid {
+        border-bottom: 3pt solid #e80000;
+      }
+      &:placeholder-shown {
+        border-bottom: 3pt solid #00bf5c;
+      }
+      &:focus,
+      &:valid {
+        border-bottom: 3pt solid #08ff7fff;
+      }
+    }
+
+    button {
+      background-color: #57dbff;
+      border-color: #7ce3ff;
+      &:hover {
+        background-color: #37fcce;
+        border-color: #56ffd8;
+      }
+      &:active {
+        background-color: #3fff99;
+        border-color: #47d23b;
+      }
+    }
+  }
+}
+
+:global(.DarkMode) {
+  .LoginForm {
+    background: linear-gradient(30deg, #290d37, #34244d, #4d2424, #370d0d);
+    background-size: 500%;
+    box-shadow: 0 0 5pt #9a00cd;
+
+    &:hover {
+      box-shadow: 0 0 15pt #9a00cd;
+    }
+
+    input {
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      background: #1b1b1b;
+      box-shadow: none;
+      -webkit-box-shadow: inset 0 0 0 30px #1b1b1b;
+
+      &::placeholder {
+        color: #a8a8a8;
+      }
+      &:invalid {
+        border-bottom: 3pt solid #a90000;
+      }
+      &:placeholder-shown {
+        border-bottom: 3pt solid #680070;
+      }
+      &:focus,
+      &:valid {
+        border-bottom: 3pt solid #8300d4;
+      }
+    }
+
+    a {
+      color: #77bdff;
+    }
+
+    button {
+      color: #ffffff;
+      background-color: #088cb0;
+      border-color: #299ebf;
+      &:hover {
+        background-color: #07af88;
+        border-color: #1cd2a8;
+      }
+      &:active {
+        background-color: #009e4a;
+        border-color: #15f800;
+      }
+    }
+  }
+}
+
+@keyframes BgAnim {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
