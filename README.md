@@ -62,7 +62,7 @@ npm install
 
 **_ES:_** Script por defecto en Vite, para vigilar cambios y autoejecucion en modo de desarrollo.
 
-**_ES:_** A Vitejs default script for watching changes and autorun in development mode
+**_EN:_** A Vitejs default script for watching changes and autorun in development mode
 
 ```
 npm run dev
@@ -70,7 +70,7 @@ npm run dev
 
 **_ES:_** Formatea todos los archivos de codigo con Prettier
 
-**_ES:_** Formats all allowed code files with Prettier
+**_EN:_** Formats all allowed code files with Prettier
 
 ```
 npm run format
@@ -78,7 +78,7 @@ npm run format
 
 **_ES:_** Transpila y construye el proyecto para producción.
 
-**_ES:_** Transpiles and builds the project for production.
+**_EN:_** Transpiles and builds the project for production.
 
 ```
 npm run build
@@ -86,7 +86,7 @@ npm run build
 
 **_ES:_** Ejecuta un servidor de prueba sobre el proyecto construido
 
-**_ES:_** Runs a test server on the builded project
+**_EN:_** Runs a test server on the builded project
 
 ```
 npm run preview
@@ -94,7 +94,7 @@ npm run preview
 
 **_ES:_** Ejecuta el Proyecto construido en "build" para produccion.
 
-**_ES:_** Runs the builded project for production.
+**_EN:_** Runs the builded project for production.
 
 ```
 npm start
