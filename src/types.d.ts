@@ -6,6 +6,11 @@ export type NavClassNameType =
   | ((props: { isActive: boolean; isPending: boolean }) => string);
 
 // SERVER REQUESTS TYPES
+export type ServerBasicResponse = {
+  Id: number;
+  responseMessage: string;
+};
+
 export type ServerLoginResponse = {
   Id: number;
   responseMessage: string;

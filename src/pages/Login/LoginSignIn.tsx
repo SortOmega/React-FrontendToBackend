@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import stylesModule from '../styles/Login.module.scss';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { ServerLoginResponse } from '#/types';
 import { setCookie } from '#/assets/Functions/AuthCookie';
+import stylesModule from '../styles/Login.module.scss';
 
 function LoginSignIn() {
   // ------- HOOKS DECLARATIONS ------- //
