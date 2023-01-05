@@ -3,8 +3,9 @@ import About from './About';
 import UsersPage from './Users/UsersPage';
 import User from './Users/User';
 import NotFound404 from './NotFound404';
-import LoginSignIn from './Login/LoginSignIn';
-import LogInSignUp from './Login/LogInSignUp';
+import SignIn from './Login/SignIn';
+import SignUp from './Login/SignUp';
+import Dashboard from './Dashboard';
 
 export {
   HomePage,
@@ -12,6 +13,7 @@ export {
   UsersPage,
   User,
   NotFound404,
-  LoginSignIn,
-  LogInSignUp,
+  SignIn,
+  SignUp,
+  Dashboard,
 };

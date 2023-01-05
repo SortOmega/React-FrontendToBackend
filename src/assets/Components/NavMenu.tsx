@@ -24,9 +24,9 @@ function NavMenu() {
       <h1>SortOmega</h1>
       <ul>
         <MenuLink to='/' label='Home' />
-        <MenuLink to='/users' label='Users' />
         <MenuLink to='/about' label='About' />
         <MenuLink to='/login' label='Log In' />
+        <MenuLink to='/dashboard' label='Dashboard' />
       </ul>
     </header>
   );

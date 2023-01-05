@@ -1,3 +1,18 @@
+.DeniedNav {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  justify-content: center;
+  padding: 10pt 0;
+  font-weight: bold;
+  font-size: 16px;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  user-select: none;
+}
+
 .LoginForm {
   display: grid;
   align-self: center;
@@ -59,7 +74,12 @@
   }
 }
 
+// ------------------ COLOR THEMES ------------------ //
 :global(.LightMode) {
+  .DeniedNav {
+    background: #ff6b6b;
+    animation-name: VanishLight;
+  }
   .LoginForm {
     background: linear-gradient(30deg, #9bffde, #d5fffe, #fff5d0, #e0ffa1);
     background-size: 500%;
@@ -104,6 +124,10 @@
 }
 
 :global(.DarkMode) {
+  .DeniedNav {
+    background: #b40404;
+    animation-name: VanishDark;
+  }
   .LoginForm {
     background: linear-gradient(30deg, #290d37, #34244d, #4d2424, #370d0d);
     background-size: 500%;
@@ -164,5 +188,34 @@
   }
   100% {
     background-position: 0%;
+  }
+}
+
+@keyframes VanishLight {
+  0% {
+    background: #ff6b6bff;
+    opacity: 1;
+  }
+  20% {
+    background: #ff6b6bff;
+    opacity: 1;
+  }
+  100% {
+    background: #ff6b6b00;
+    opacity: 0;
+  }
+}
+@keyframes VanishDark {
+  0% {
+    background: #b40404ff;
+    opacity: 1;
+  }
+  20% {
+    background: #b40404ff;
+    opacity: 1;
+  }
+  100% {
+    background: #b4040400;
+    opacity: 0;
   }
 }

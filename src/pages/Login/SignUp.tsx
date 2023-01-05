@@ -5,7 +5,7 @@ import { v4 as uuidV4 } from 'uuid';
 import { ServerBasicResponse } from '#/types';
 import stylesModule from '../styles/Login.module.scss';
 
-function LogInSignUp() {
+function SignUp() {
   // ------- HOOKS DECLARATIONS ------- //
   const RegisterInitData = { name: '', surname: '', email: '', password: '' };
   const [registerData, setRegisterData] = useState(RegisterInitData);
@@ -30,7 +30,7 @@ function LogInSignUp() {
 
       let bodyContent = JSON.stringify(Register);
 
-      let response = await fetch('http://localhost:3000/user/register', {
+      let response = await fetch('http://localhost:3000/api/user/register', {
         method: 'POST',
         body: bodyContent,
         headers: headersList,
@@ -100,4 +100,4 @@ function LogInSignUp() {
   );
 }
 
-export default LogInSignUp;
+export default SignUp;

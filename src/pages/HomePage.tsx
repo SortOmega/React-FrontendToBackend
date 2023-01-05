@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { GlobalContext } from '#Contexts/GlobalContext';
 import { useContext } from 'react';
 import stylesModule from './styles/HomePage.module.scss';
+
 function HomePage() {
   const { theme } = useContext(GlobalContext);
   return (

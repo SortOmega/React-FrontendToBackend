@@ -5,8 +5,9 @@ import {
   UsersPage,
   User,
   NotFound404,
-  LoginSignIn,
-  LogInSignUp,
+  SignIn,
+  SignUp,
+  Dashboard,
 } from '#/pages/AllPages';
 import { NavMenu } from '#Components/AllComponents';
 import { useContext } from 'react';
@@ -23,12 +24,13 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
 
-          <Route path='/login/signin' element={<LoginSignIn />} />
-          <Route path='/login/signup' element={<LogInSignUp />} />
+          <Route path='/login/signin' element={<SignIn />} />
+          <Route path='/login/signup' element={<SignUp />} />
           <Route
             path='/login'
             element={<Navigate to={'/login/signin'} replace={true} />}
           />
+          <Route path='/dashboard' element={<Dashboard />} />
 
           <Route path='/users' element={<UsersPage />}>
             <Route path=':userID' element={<User />} />
