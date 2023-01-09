@@ -45,6 +45,9 @@ function SignIn() {
       } else alert(data.responseMessage);
     } catch (error) {
       console.log(error);
+      if (TypeError()) {
+        alert('ERROR 404: No se pudo realizar una conexión al servidor!');
+      }
     }
   };
   // ------- RETURN COMPONENT ------- //
@@ -52,7 +55,7 @@ function SignIn() {
   return (
     <>
       <Helmet title='Log In' />
-      {state === null ? <></> : !state.logged ? <DeniedDashboard /> : <></>}
+      {state === null ? <></> : !state.logged && <DeniedDashboard />}
       <form className={`${stylesModule.LoginForm}`} onSubmit={handleSubmit}>
         <div className={`${stylesModule.LoginForm__Title}`}>
           <h3>Login</h3>

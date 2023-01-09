@@ -1,0 +1,81 @@
+@use '../../../pages/styles/pagesCommon';
+// ----------------- COMPONENT STRUCTURE ----------------- //
+.DashboardMenu {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: pagesCommon.$DashMenuHeight;
+  align-items: center;
+  user-select: none;
+  > ul {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    > li {
+      display: inline-block;
+      > :global(.NavPage),
+      :global(.NavPage--active) {
+        $height: 30px;
+        $time: 0.4s;
+        display: flex;
+        align-items: center;
+        padding: 0pt 15pt;
+        height: $height;
+        border-radius: calc(#{$height}/ 2) / 50%;
+        text-decoration: none;
+        transition: color #{$time}, background #{$time};
+      }
+    }
+  }
+}
+
+// ----------------- COMPONENT THEME COLORING ----------------- //
+:global(.LightMode) {
+  .DashboardMenu {
+    //background: #aadeff;
+    > ul {
+      > li {
+        > :global(.NavPage),
+        :global(.NavPage--active) {
+          color: #000000;
+        }
+
+        > :global(.NavPage) {
+          &:hover {
+            background: #eae876;
+          }
+        }
+
+        > :global(.NavPage--active) {
+          background: #adff2f;
+        }
+      }
+    }
+  }
+}
+
+:global(.DarkMode) {
+  .DashboardMenu {
+    //background: #004671;
+    > ul {
+      > li {
+        > :global(.NavPage),
+        :global(.NavPage--active) {
+          color: #ffffff;
+        }
+
+        > :global(.NavPage) {
+          &:hover {
+            background: #697c00;
+          }
+        }
+
+        > :global(.NavPage--active) {
+          background: #1c7209;
+        }
+      }
+    }
+  }
+}

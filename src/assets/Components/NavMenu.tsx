@@ -1,21 +1,6 @@
-import { NavLink, To } from 'react-router-dom';
-import { NavClassNameType } from '#/types';
+import MenuLink from './MenuLink';
 import { GlobalContext } from '#Contexts/GlobalContext';
 import { useContext } from 'react';
-
-const activeNav: NavClassNameType = (datos) => {
-  return datos.isActive ? 'NavPage--active' : 'NavPage';
-};
-
-function MenuLink({ to, label }: { to: To; label: string }) {
-  return (
-    <li>
-      <NavLink to={to} className={activeNav}>
-        {label}
-      </NavLink>
-    </li>
-  );
-}
 
 function NavMenu() {
   const { theme } = useContext(GlobalContext);

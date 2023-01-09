@@ -1,12 +1,27 @@
 @use 'pagesCommon';
 
-.DashboardContainer {
+.DashboardContainer,
+.DbContent {
   @include pagesCommon.PageContainer();
+  width: 100%;
+}
+
+.DashboardContainer {
+  height: calc(100vh - #{pagesCommon.$HeaderHeight});
+} //*/
+
+.DbContent {
+  height: calc(
+    98vh - #{pagesCommon.$HeaderHeight} - #{pagesCommon.$DashMenuHeight}
+  );
+  flex-direction: column;
+  margin-top: calc(#{pagesCommon.$DashMenuHeight} + 3pt);
+  overflow-y: auto;
 }
 
 // ------------------ COLOR THEMES ------------------ //
 :global(.LightMode) {
-  .HomeContainer {
+  .DashboardContainer {
     > button {
       background: #4c3;
     }
@@ -14,7 +29,7 @@
 }
 
 :global(.DarkMode) {
-  .HomeContainer {
+  .DashboardContainer {
     > button {
       background: #0f7f00;
     }

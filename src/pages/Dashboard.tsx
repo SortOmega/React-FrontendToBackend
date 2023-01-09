@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { getCookie } from '#/assets/Functions/AuthCookie';
+import DashboardMenu from '#/assets/Components/DashboardMenu';
 import stylesModule from './styles/Dashboard.module.scss';
 
 function Dashboard() {
@@ -10,12 +11,16 @@ function Dashboard() {
 
   // ------- RETURN COMPONENT ------- //
   if (!!!getCookie('jwt'))
-    return <Navigate to='/signin' state={{ logged: false }} />;
+    return <Navigate to='/login/signin' state={{ logged: false }} />;
   return (
     <>
       <Helmet title='Dashboard' />
-      <div className={`${stylesModule.HomeContainer}`}>
-        This is the dashboard!
+      <div className={`${stylesModule.DashboardContainer}`}>
+        <DashboardMenu />
+        <div className={stylesModule.DbContent}>
+          This is the dashboard!
+          <Outlet />
+        </div>
       </div>
     </>
   );

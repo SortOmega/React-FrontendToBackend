@@ -1,5 +1,7 @@
 @mixin PageContainer() {
   display: flex;
-  padding: 10px;
   height: min-content;
 }
+$HeaderHeight: 4rem;
+
+$DashMenuHeight: 34pt;
