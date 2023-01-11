@@ -10,135 +10,11 @@
   font-family: 'Poppins';
 }
 
-@mixin InitRoot() {
-  display: flex;
-  min-height: 100vh;
-  height: 100%;
-  width: 100%;
-}
-@mixin FlexHeight() {
-  display: flex;
-  height: 100%;
-  align-items: center;
-}
-@mixin TransitionGeneral() {
-  $trTime: 0.5s;
-  transition: background $trTime, color $trTime;
-}
-
-@mixin TransitionMenu() {
-  $trTime: 0.4s;
-  transition: background $trTime, color $trTime, border $trTime;
-}
-
-@mixin BorderButtom($Color: #00000000) {
-  border-bottom: 2pt solid $Color;
-}
-
 body {
-  @include InitRoot;
+  @include pagesCommon.InitRoot;
   > #root {
-    @include InitRoot;
-  }
-}
-
-header {
-  display: flex;
-  position: fixed;
-  width: 100%;
-  height: pagesCommon.$HeaderHeight;
-  color: #000;
-  justify-content: space-between;
-  @include TransitionGeneral();
-  > h1 {
-    padding: 0 6pt;
-  }
-
-  > ul {
-    list-style: none;
-    user-select: none;
-    > li {
-      @include FlexHeight();
-
-      > .NavPage {
-        transition: color 0.3s;
-      }
-
-      > .NavPage,
-      > .NavPage--active {
-        @include FlexHeight();
-        padding: 0 15pt;
-        background: inherit;
-        text-decoration: none;
-        @include TransitionMenu();
-        @include BorderButtom();
-      }
-    }
-  }
-
-  > h1,
-  > ul {
-    @include FlexHeight();
-  }
-
-  &.LightMode {
-    $bg: #ffeded;
-    $nonActive: #a30000;
-    $active: #1c7209;
-    background: $bg;
-    > ul {
-      > li {
-        > .NavPage {
-          color: #000000;
-          &:hover {
-            color: $nonActive;
-            @include BorderButtom($nonActive);
-          }
-          &--active {
-            color: $active;
-            @include BorderButtom($active);
-          }
-        }
-        > .NavPage,
-        > .NavPage--active {
-          padding: 0 15pt;
-          &:hover {
-            background: $bg;
-          }
-        }
-      }
-    }
-  }
-  &.DarkMode {
-    $bg: #222222;
-    $nonActive: #ff8888;
-    $active: #adff2f;
-    background: #101010;
-    > h1 {
-      color: #ffffff;
-    }
-    > ul {
-      > li {
-        > .NavPage {
-          color: #ffeded;
-          &:hover {
-            color: $nonActive;
-            @include BorderButtom($nonActive);
-          }
-          &--active {
-            color: $active;
-            @include BorderButtom($active);
-          }
-        }
-        > .NavPage,
-        > .NavPage--active {
-          padding: 0 15pt;
-          &:hover {
-            background: #333;
-          }
-        }
-      }
-    }
+    @include pagesCommon.InitRoot;
+    overflow: hidden;
   }
 }
 
@@ -150,13 +26,13 @@ main {
   width: 100%;
   padding: 0;
   padding-top: #{pagesCommon.$HeaderHeight};
-  @include TransitionGeneral();
+  @include pagesCommon.TransitionGeneral();
 
   &.LightMode {
-    background: #ffeded;
+    background: pagesCommon.$bgLight;
   }
   &.DarkMode {
-    background: #222222;
+    background: pagesCommon.$bgDark;
     color: #ffffff;
   }
 }

@@ -12,7 +12,7 @@
 
 .DbContent {
   height: calc(
-    98vh - #{pagesCommon.$HeaderHeight} - #{pagesCommon.$DashMenuHeight}
+    99vh - #{pagesCommon.$HeaderHeight} - #{pagesCommon.$DashMenuHeight}
   );
   flex-direction: column;
   margin-top: calc(#{pagesCommon.$DashMenuHeight} + 3pt);

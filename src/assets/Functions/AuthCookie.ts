@@ -4,10 +4,15 @@ export const setCookie = (
   CookieValue: string,
   ExpireHours: number
 ) => {
-  const d = new Date();
-  d.setTime(d.getTime() + ExpireHours * 60 * 60 * 1000);
-  let expires = 'expires=' + d.toUTCString();
-  document.cookie = `${CookieName}=${CookieValue};${expires};secure;path=/`;
+  try {
+    const d = new Date();
+    d.setTime(d.getTime() + ExpireHours * 60 * 60 * 1000);
+    let expires = 'expires=' + d.toUTCString();
+    document.cookie =
+      CookieName + '=' + CookieValue + ';' + expires + ';path=/';
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // ------------- RETURNS A LIST OF COOKIE DEFINED IN THE CURRENT PAGE ------------- //
@@ -30,4 +35,5 @@ export const getCookie = (name: string) => {
       return Cookies[i][1];
     }
   }
+  return undefined;
 };

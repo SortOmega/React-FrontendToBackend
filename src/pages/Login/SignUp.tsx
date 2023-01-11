@@ -14,7 +14,10 @@ function SignUp() {
   const handleOnChangeInputs = (evento: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evento.target;
 
-    setRegisterData({ ...registerData, [name]: value });
+    setRegisterData({
+      ...registerData,
+      [name]: name !== 'email' ? value : value.toLowerCase(),
+    });
   };
 
   const handleSubmit = async (evento: FormEvent) => {
@@ -62,6 +65,7 @@ function SignUp() {
           name='name'
           required={true}
           placeholder={'Your First Name...'}
+          value={registerData.name}
           onChange={handleOnChangeInputs}
         />
         <label htmlFor='surname'>Last Name:</label>
@@ -71,6 +75,7 @@ function SignUp() {
           name='surname'
           required={true}
           placeholder={'Your Last Name...'}
+          value={registerData.surname}
           onChange={handleOnChangeInputs}
         />
         <label htmlFor='email'>Email:</label>
@@ -79,7 +84,9 @@ function SignUp() {
           type={'email'}
           name='email'
           required={true}
+          pattern={'^[a-z]+[a-z0-9_-]+(?:.[a-z0-9_-]+)*@(?:omega.support.com)$'}
           placeholder={'example@omega.support.com'}
+          value={registerData.email}
           onChange={handleOnChangeInputs}
         />
         <label htmlFor='password'>Contraseña:</label>
@@ -89,6 +96,7 @@ function SignUp() {
           name='password'
           required={true}
           placeholder={'Your Password'}
+          value={registerData.password}
           onChange={handleOnChangeInputs}
         />
       </div>

@@ -1,0 +1,215 @@
+@use '../../../pages/styles/pagesCommon';
+
+@mixin TransitionMenu() {
+  $Time: 0.4s;
+  transition: background $Time, color $Time, border $Time;
+}
+
+@mixin BorderButtom($Color: #00000000) {
+  border-bottom: 2pt solid $Color;
+}
+
+@mixin FlexHeight() {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+// ----------------- COMPONENT STRUCTURE ----------------- //
+
+header {
+  z-index: 100;
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: pagesCommon.$HeaderHeight;
+  justify-content: space-between;
+  @include pagesCommon.TransitionGeneral();
+  > h1 {
+    padding: 0 6pt;
+  }
+  @media screen and (min-width: 0px) and (max-width: 610px) {
+    > .Menu {
+      > #labelMenu {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        font-size: 18pt;
+        margin-left: 10pt;
+        padding: 0 10pt;
+      }
+
+      > #toggleMenu {
+        display: none;
+      }
+
+      > #toggleMenu ~ ul {
+        display: grid;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateX(120%);
+        height: calc(100vh - pagesCommon.$HeaderHeight);
+        margin-top: pagesCommon.$HeaderHeight;
+        width: 100vw;
+        list-style: none;
+        user-select: none;
+        $rd: 20px;
+        border-radius: $rd 0 0 $rd;
+        transition: transform 0.4s;
+        > li {
+          @include FlexHeight();
+          width: 100%;
+          > .NavPage {
+            transition: color 0.3s;
+          }
+
+          > .NavPage,
+          > .NavPage--active {
+            @include FlexHeight();
+            width: 100%;
+            padding: 0 15pt;
+            justify-content: center;
+            background: inherit;
+            text-decoration: none;
+            border-radius: 15pt;
+            @include TransitionMenu();
+            @include BorderButtom();
+          }
+        }
+      }
+      > #toggleMenu:checked ~ ul {
+        transform: translateX(2pt);
+      }
+    }
+  }
+  @media screen and (min-width: 610px) {
+    > .Menu {
+      > #labelMenu,
+      > #toggleMenu {
+        display: none;
+      }
+      > ul {
+        list-style: none;
+        user-select: none;
+        > li {
+          @include FlexHeight();
+
+          > .NavPage {
+            transition: color 0.3s;
+          }
+
+          > .NavPage,
+          > .NavPage--active {
+            @include FlexHeight();
+            padding: 0 15pt;
+            background: inherit;
+            text-decoration: none;
+            @include TransitionMenu();
+            @include BorderButtom();
+          }
+        }
+      }
+    }
+  }
+
+  > h1,
+  > .Menu,
+  > .Menu > ul {
+    @include FlexHeight();
+  }
+}
+// ------------------------------------------------------------ //
+// ----------------- COMPONENT THEME COLORING ----------------- //
+header.LightMode {
+  $nonActive: #a30000;
+  $active: #1c7209;
+  background: pagesCommon.$bgLight;
+  color: #000000;
+  > .Menu {
+    > #toggleMenu:checked ~ #labelMenu {
+      color: $active;
+    }
+    > ul {
+      @media screen and (min-width: 0px) and (max-width: 610px) {
+        background: #{pagesCommon.$bgLight}dd;
+        box-shadow: 0 3px 5px 4px #b6b6b6;
+        backdrop-filter: blur(8px);
+      }
+      > li {
+        @media screen and (min-width: 0px) and (max-width: 610px) {
+          &:has(.NavPage--active) {
+            background: linear-gradient(to top, #e7ffc3, #ffe8c3);
+          }
+        }
+        > .NavPage {
+          color: #000000;
+          &:hover {
+            color: $nonActive;
+            @include BorderButtom($nonActive);
+          }
+          &--active {
+            color: $active;
+            @include BorderButtom($active);
+          }
+        }
+        > .NavPage,
+        > .NavPage--active {
+          padding: 0 15pt;
+          &:hover {
+            background: pagesCommon.$bgLight;
+          }
+        }
+      }
+    }
+  }
+}
+
+header.DarkMode {
+  $nonActive: #ff8888;
+  $active: #adff2f;
+  background: pagesCommon.$bgDark;
+  > h1,
+  > .Menu > #labelMenu {
+    color: #ffffff;
+  }
+  > .Menu {
+    > #toggleMenu:checked ~ #labelMenu {
+      color: $active;
+    }
+    > ul {
+      @media screen and (min-width: 0px) and (max-width: 610px) {
+        background: #{pagesCommon.$bgDark}dd;
+        box-shadow: 0 3px 5px 4px #4e4e4e;
+        backdrop-filter: blur(8px);
+      }
+      > li {
+        @media screen and (min-width: 0px) and (max-width: 610px) {
+          &:has(.NavPage--active) {
+            background: linear-gradient(to top, #680070, #4d2424);
+          }
+        }
+
+        > .NavPage {
+          color: #ffeded;
+          &:hover {
+            color: $nonActive;
+            @include BorderButtom($nonActive);
+          }
+          &--active {
+            color: $active;
+            @include BorderButtom($active);
+          }
+        }
+        > .NavPage,
+        > .NavPage--active {
+          padding: 0 15pt;
+          &:hover {
+            background: #333;
+          }
+        }
+      }
+    }
+  }
+}

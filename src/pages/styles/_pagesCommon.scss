@@ -1,7 +1,23 @@
+$HeaderHeight: 4rem;
+
+$DashMenuHeight: 34pt;
+
+$bgLight: #ffeded;
+$bgDark: #222222;
+
 @mixin PageContainer() {
   display: flex;
   height: min-content;
 }
-$HeaderHeight: 4rem;
 
-$DashMenuHeight: 34pt;
+@mixin InitRoot() {
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+}
+
+@mixin TransitionGeneral() {
+  $trTime: 0.5s;
+  transition: background $trTime, color $trTime;
+}

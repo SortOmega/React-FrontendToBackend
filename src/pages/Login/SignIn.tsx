@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { setCookie } from '#/assets/Functions/AuthCookie';
-import { ServerLoginResponse, DashboardLoggedType } from '#/types';
+import { DashboardLoggedType } from '#/types';
 import stylesModule from '../styles/Login.module.scss';
+import { FetchPostLogin } from '#/assets/Functions/FetchServer';
 
 function SignIn() {
   // ------- HOOKS DECLARATIONS ------- //
@@ -16,33 +16,18 @@ function SignIn() {
   const handleOnChangeInputs = (evento: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evento.target;
 
-    setLoginData({ ...loginData, [name]: value });
+    setLoginData({
+      ...loginData,
+      [name]: name !== 'email' ? value : value.toLowerCase(),
+    });
   };
 
   const handleSubmit = async (evento: FormEvent) => {
     evento.preventDefault();
 
     try {
-      let headersList = {
-        'Accept': '*/*',
-        'Content-Type': 'application/json',
-      };
-
-      let bodyContent = JSON.stringify(loginData);
-
-      let response = await fetch('http://localhost:3000/api/user/login', {
-        method: 'POST',
-        body: bodyContent,
-        headers: headersList,
-      });
-
-      let data: ServerLoginResponse = await response.json();
-
-      if (data.Id === 200) {
-        console.log(data);
-        setCookie('jwt', data.jwt, 1);
-        GoToPage('/dashboard');
-      } else alert(data.responseMessage);
+      const Success = await FetchPostLogin(loginData);
+      if (Success) GoToPage('/dashboard');
     } catch (error) {
       console.log(error);
       if (TypeError()) {
@@ -67,6 +52,10 @@ function SignIn() {
             type={'email'}
             name='email'
             required={true}
+            pattern={
+              '^[a-z]+[a-z0-9_-]+(?:.[a-z0-9_-]+)*@(?:omega.support.com)$'
+            }
+            value={loginData.email}
             placeholder={'example@omega.support.com'}
             onChange={handleOnChangeInputs}
           />
@@ -77,6 +66,7 @@ function SignIn() {
             name='password'
             required={true}
             placeholder={'Your Password'}
+            value={loginData.password}
             onChange={handleOnChangeInputs}
           />
         </div>

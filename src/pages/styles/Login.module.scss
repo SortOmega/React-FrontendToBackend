@@ -16,11 +16,19 @@
 .LoginForm {
   display: grid;
   align-self: center;
-  width: 400px;
-  grid-template-rows: 70pt 1fr 80pt;
+  @media screen and (min-width: 0px) and (max-width: 610px) {
+    min-width: 270px;
+    width: 85%;
+    padding: 16pt;
+    grid-template-rows: 65pt 1fr 70pt;
+  }
+  @media screen and (min-width: 610px) {
+    width: 450px;
+    padding: 20pt;
+    grid-template-rows: 70pt 1fr 80pt;
+  }
   border-radius: 15pt;
   height: min-content;
-  padding: 20pt;
   transition: box-shadow 0.5s;
   animation: BgAnim 50s infinite;
 
@@ -139,7 +147,6 @@
 
     input {
       color: #ffffff;
-      -webkit-text-fill-color: #ffffff;
       background: #1b1b1b;
       box-shadow: none;
       -webkit-box-shadow: inset 0 0 0 30px #1b1b1b;
@@ -149,13 +156,20 @@
       }
       &:invalid {
         border-bottom: 3pt solid #a90000;
+        -webkit-text-fill-color: #ffffff;
       }
       &:placeholder-shown {
         border-bottom: 3pt solid #680070;
+        -webkit-text-fill-color: #b9b9b9;
       }
+
       &:focus,
       &:valid {
+        caret-color: #c1c1c1;
         border-bottom: 3pt solid #8300d4;
+      }
+      &:valid {
+        -webkit-text-fill-color: #ffffff;
       }
     }
 

@@ -10,8 +10,9 @@ function Dashboard() {
   // ------- HANDLE ACTION EVENTS ------- //
 
   // ------- RETURN COMPONENT ------- //
+  //console.log(document.cookie);
   if (!!!getCookie('jwt'))
-    return <Navigate to='/login/signin' state={{ logged: false }} />;
+    return <Navigate to='/login/signin' state={{ logged: false }} />; //*/
   return (
     <>
       <Helmet title='Dashboard' />
