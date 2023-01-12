@@ -5,9 +5,9 @@ function DashboardMenu() {
   return (
     <div className={stylesModule.DashboardMenu}>
       <ul>
-        <MenuLink to='/dashboard' label='Principal' />
-        <MenuLink to='/dashboard/user-info' label='Principal2' />
-        <MenuLink to='/dashboard/user-profile' label='Principal3' />
+        <MenuLink to='/dashboard/main' label='Principal' />
+        <MenuLink to='/dashboard/myprofile' label='Mi Perfil' />
+        <MenuLink to='/dashboard/users' label='Usuarios' />
       </ul>
     </div>
   );

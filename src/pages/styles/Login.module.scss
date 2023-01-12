@@ -1,4 +1,25 @@
-.DeniedNav {
+@mixin Vanish($id: 0, $bgColor: #000000) {
+  // You most provide an id for each element to work properly!
+  // If you want some elements to have the same animation, just put the same id for each one.
+  animation-name: Vanish#{$id};
+  @keyframes Vanish#{$id} {
+    0% {
+      background: #{$bgColor}ff;
+      opacity: 1;
+    }
+    20% {
+      background: #{$bgColor}ff;
+      opacity: 1;
+    }
+    100% {
+      background: #{$bgColor}00;
+      opacity: 0;
+    }
+  }
+}
+
+.Popup__DeniedNav,
+.Popup__RegisterSuccess {
   display: flex;
   position: absolute;
   width: 100%;
@@ -6,6 +27,7 @@
   padding: 10pt 0;
   font-weight: bold;
   font-size: 16px;
+  text-align: center;
   animation-duration: 10s;
   animation-timing-function: linear;
   animation-direction: normal;
@@ -84,9 +106,15 @@
 
 // ------------------ COLOR THEMES ------------------ //
 :global(.LightMode) {
-  .DeniedNav {
-    background: #ff6b6b;
-    animation-name: VanishLight;
+  .Popup__DeniedNav {
+    $bgPopup: #ff6b6b;
+    background: $bgPopup;
+    @include Vanish(DL, $bgPopup);
+  }
+  .Popup__RegisterSuccess {
+    $bgPopup: #12ff26;
+    background: $bgPopup;
+    @include Vanish(RL, $bgPopup);
   }
   .LoginForm {
     background: linear-gradient(30deg, #9bffde, #d5fffe, #fff5d0, #e0ffa1);
@@ -132,9 +160,15 @@
 }
 
 :global(.DarkMode) {
-  .DeniedNav {
-    background: #b40404;
-    animation-name: VanishDark;
+  .Popup__DeniedNav {
+    $bgPopup: #b40404;
+    background: $bgPopup;
+    @include Vanish(DD, $bgPopup);
+  }
+  .Popup__RegisterSuccess {
+    $bgPopup: #0e8a4a;
+    background: $bgPopup;
+    @include Vanish(RD, $bgPopup);
   }
   .LoginForm {
     background: linear-gradient(30deg, #290d37, #34244d, #4d2424, #370d0d);
@@ -202,34 +236,5 @@
   }
   100% {
     background-position: 0%;
-  }
-}
-
-@keyframes VanishLight {
-  0% {
-    background: #ff6b6bff;
-    opacity: 1;
-  }
-  20% {
-    background: #ff6b6bff;
-    opacity: 1;
-  }
-  100% {
-    background: #ff6b6b00;
-    opacity: 0;
-  }
-}
-@keyframes VanishDark {
-  0% {
-    background: #b40404ff;
-    opacity: 1;
-  }
-  20% {
-    background: #b40404ff;
-    opacity: 1;
-  }
-  100% {
-    background: #b4040400;
-    opacity: 0;
   }
 }

@@ -19,7 +19,9 @@ export type ServerLoginResponse = {
 };
 
 // ---------------- NAVIGATION STATES TYPE ---------------- //
-export type DashboardLoggedType = { state: { logged: boolean } | null };
+export type SignInStates = {
+  state: { logged: boolean; registerSuccess: boolean } | null;
+};
 
 // ---------------- HTTPS STATUS CODES ---------------- //
 type HttpInformational = 100 | 101 | 102 | 103;

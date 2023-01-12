@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
-import stylesModule from '../styles/Users.module.scss';
+import stylesModule from '../../styles/Users.module.scss';
 
-function User() {
+function UserProfile() {
   const { userID } = useParams();
   return (
     <div className={`${stylesModule.UserData}`}>
@@ -10,4 +10,4 @@ function User() {
   );
 }
 
-export default User;
+export default UserProfile;

@@ -19,7 +19,6 @@ function Dashboard() {
       <div className={`${stylesModule.DashboardContainer}`}>
         <DashboardMenu />
         <div className={stylesModule.DbContent}>
-          This is the dashboard!
           <Outlet />
         </div>
       </div>

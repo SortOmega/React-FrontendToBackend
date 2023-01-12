@@ -21,11 +21,13 @@
         $time: 0.4s;
         display: flex;
         align-items: center;
-        padding: 0pt 15pt;
+        padding: 0pt 10pt;
         height: $height;
+        border: 2px solid #4a4a4a00;
         border-radius: calc(#{$height}/ 2) / 50%;
+        //shape-outside: border-box;
         text-decoration: none;
-        transition: color #{$time}, background #{$time};
+        transition: color #{$time}, background #{$time}, border #{$time};
       }
     }
   }

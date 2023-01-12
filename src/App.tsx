@@ -3,11 +3,13 @@ import {
   HomePage,
   About,
   UsersPage,
-  User,
+  UserProfile,
   NotFound404,
   SignIn,
   SignUp,
   Dashboard,
+  MyProfile,
+  DashboardMain,
 } from '#/pages/AllPages';
 import { NavMenu } from '#Components/AllComponents';
 import { useContext } from 'react';
@@ -22,20 +24,9 @@ function App() {
       {/*Navigation Routes*/}
       <main className={theme.get}>
         <Routes>
+          {/* ********** HOME ********** */}
           <Route path='/' element={<HomePage />} />
-
-          <Route path='/login/signin' element={<SignIn />} />
-          <Route path='/login/signup' element={<SignUp />} />
-          <Route
-            path='/login'
-            element={<Navigate to={'/login/signin'} replace={true} />}
-          />
-          <Route path='/dashboard' element={<Dashboard />} />
-
-          <Route path='/users' element={<UsersPage />}>
-            <Route path=':userID' element={<User />} />
-          </Route>
-
+          {/* ********** ABOUT ********** */}
           <Route path='/about/*' element={<About />}>
             <Route path='company' element={<span>Info de la compañia</span>} />
             <Route path='me' element={<span>Info sobre mi</span>} />
@@ -44,7 +35,27 @@ function App() {
               element={<span>Info sobre nuestros servicios</span>}
             />
           </Route>
+          {/* ********** LOGIN ********** */}
+          <Route path='/login/signin' element={<SignIn />} />
+          <Route path='/login/signup' element={<SignUp />} />
+          <Route
+            path='/login'
+            element={<Navigate to={'/login/signin'} replace={true} />}
+          />
+          {/* ********** DASHBOARD ********** */}
+          <Route path='/dashboard/*' element={<Dashboard />}>
+            <Route path='main' element={<DashboardMain />} />
+            <Route path='myprofile' element={<MyProfile />} />
+            <Route path='users' element={<UsersPage />}>
+              <Route path=':userID' element={<UserProfile />} />
+            </Route>
+          </Route>
+          <Route
+            path='/dashboard'
+            element={<Navigate to={'/dashboard/main'} />}
+          />
 
+          {/* ********** NOT VALID ********** */}
           <Route path='*' element={<NotFound404 />} />
         </Routes>
       </main>

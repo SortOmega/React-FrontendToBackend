@@ -1,12 +1,12 @@
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { v4 as uuidV4 } from 'uuid';
-import { ServerBasicResponse } from '#/types';
+import { FetchPostRegister } from '#/assets/Functions/FetchServer';
 import stylesModule from '../styles/Login.module.scss';
 
 function SignUp() {
   // ------- HOOKS DECLARATIONS ------- //
+  const GoToPage = useNavigate();
   const RegisterInitData = { name: '', surname: '', email: '', password: '' };
   const [registerData, setRegisterData] = useState(RegisterInitData);
 
@@ -24,27 +24,11 @@ function SignUp() {
     evento.preventDefault();
 
     try {
-      const Register = { ...registerData, _id: uuidV4() };
-
-      let headersList = {
-        'Accept': '*/*',
-        'Content-Type': 'application/json',
-      };
-
-      let bodyContent = JSON.stringify(Register);
-
-      let response = await fetch('http://localhost:3000/api/user/register', {
-        method: 'POST',
-        body: bodyContent,
-        headers: headersList,
-      });
-
-      let data: ServerBasicResponse = await response.json();
-
-      if (data.Id === 201) {
-        console.log(data);
-      }
-      alert(data.responseMessage);
+      const Success = await FetchPostRegister(registerData);
+      if (Success)
+        GoToPage('/login/signin', {
+          state: { registerSuccess: true, logged: true },
+        });
     } catch (error) {
       console.log(error);
     }

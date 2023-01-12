@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { DashboardLoggedType } from '#/types';
+import { SignInStates } from '#/types';
 import stylesModule from '../styles/Login.module.scss';
 import { FetchPostLogin } from '#/assets/Functions/FetchServer';
 
@@ -10,7 +10,7 @@ function SignIn() {
   const LoginInitData = { email: '', password: '' };
   const [loginData, setLoginData] = useState(LoginInitData);
   const GoToPage = useNavigate();
-  const { state }: DashboardLoggedType = useLocation();
+  const { state }: SignInStates = useLocation();
 
   // ------- HANDLE ACTION EVENTS ------- //
   const handleOnChangeInputs = (evento: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +40,13 @@ function SignIn() {
   return (
     <>
       <Helmet title='Log In' />
-      {state === null ? <></> : !state.logged && <DeniedDashboard />}
+      {state === null ? (
+        <></>
+      ) : !state.logged ? (
+        <PopupDeniedDashboard />
+      ) : (
+        state.registerSuccess && <PopupRegisterSuccess />
+      )}
       <form className={`${stylesModule.LoginForm}`} onSubmit={handleSubmit}>
         <div className={`${stylesModule.LoginForm__Title}`}>
           <h3>Login</h3>
@@ -81,10 +87,18 @@ function SignIn() {
   );
 }
 
-const DeniedDashboard = () => {
+const PopupDeniedDashboard = () => {
   return (
-    <div className={`${stylesModule.DeniedNav}`}>
+    <div className={`${stylesModule.Popup__DeniedNav}`}>
       You must authenticate to access Dashboard!
+    </div>
+  );
+};
+
+const PopupRegisterSuccess = () => {
+  return (
+    <div className={`${stylesModule.Popup__RegisterSuccess}`}>
+      Account created with success. Now let's try to login in.
     </div>
   );
 };
